@@ -19,17 +19,16 @@ const OrderDelivery = ({ route, navigation }) => {
     const [fromLocation, setFromLocation] = React.useState(null)
     const [toLocation, setToLocation] = React.useState(null)
     const [region, setRegion] = React.useState(null)
-
     const [duration, setDuration] = React.useState(0)
     const [isReady, setIsReady] = React.useState(false)
     const [angle, setAngle] = React.useState(0)
 
     React.useEffect(() => {
-        let { restaurant, currentLocation } = route.params;
+        let { navRestaurant, navCurrentLocation } = route.params;
 
-        let fromLoc = currentLocation.gps
-        let toLoc = restaurant.location
-        let street = currentLocation.streetName
+        let fromLoc = navCurrentLocation.gps
+        let toLoc = navRestaurant.location
+        let street = navCurrentLocation.streetName
 
         let mapRegion = {
             latitude: (fromLoc.latitude + toLoc.latitude) / 2,
@@ -38,7 +37,7 @@ const OrderDelivery = ({ route, navigation }) => {
             longitudeDelta: Math.abs(fromLoc.longitude - toLoc.longitude) * 2
         }
 
-        setRestaurant(restaurant)
+        setRestaurant(navRestaurant)
         setStreetName(street)
         setFromLocation(fromLoc)
         setToLocation(toLoc)
@@ -84,7 +83,10 @@ const OrderDelivery = ({ route, navigation }) => {
     function renderMap() {
         const destinationMarker = () => (
             <Marker
-                coordinate={toLocation}
+                coordinate={(toLocation) ? toLocation : {
+                    latitude: 1.5347282806345879,
+                    longitude: 110.35632207358996,
+                }}
             >
                 <View
                     style={{
@@ -182,7 +184,7 @@ const OrderDelivery = ({ route, navigation }) => {
                         }}
                     />
                     {destinationMarker()}
-                    {fromLocation? carIcon() : null}
+                    {fromLocation ? carIcon() : null}
                 </MapView>
             </View>
         )
@@ -225,7 +227,7 @@ const OrderDelivery = ({ route, navigation }) => {
                         <Text style={{ ...FONTS.body3 }}>{streetName}</Text>
                     </View>
 
-                    <Text style={{ ...FONTS.body3 }}>{Math.ceil(duration)} mins</Text>
+                    <Text style={{ ...FONTS.body3 }}>{Math.ceil(duration)} phut</Text>
                 </View>
             </View>
         )
@@ -301,7 +303,7 @@ const OrderDelivery = ({ route, navigation }) => {
                             }}
                             onPress={() => navigation.navigate("Home")}
                         >
-                            <Text style={{ ...FONTS.h4, color: COLORS.white }}>Call</Text>
+                            <Text style={{ ...FONTS.h4, color: COLORS.white }}>Goi</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -315,7 +317,7 @@ const OrderDelivery = ({ route, navigation }) => {
                             }}
                             onPress={() => navigation.goBack()}
                         >
-                            <Text style={{ ...FONTS.h4, color: COLORS.white }}>Cancel</Text>
+                            <Text style={{ ...FONTS.h4, color: COLORS.white }}>Huy</Text>
                         </TouchableOpacity>
                     </View>
 

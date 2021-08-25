@@ -16,7 +16,7 @@ const Home = ({ navigation }) => {
     // Dummy Datas
 
     const initialCurrentLocation = {
-        streetName: "Kuching",
+        streetName: "Quan DoTQ",
         gps: {
             latitude: 1.5496614931250685,
             longitude: 110.36381866919922
@@ -79,25 +79,24 @@ const Home = ({ navigation }) => {
 
     // price rating
     const affordable = 1
-    const fairPrice = 2
     const expensive = 3
 
     const restaurantData = [
         {
             id: 1,
-            name: "ByProgrammers Burger",
+            name: "Nha hang Burger",
             rating: 4.8,
-            categories: [5, 7],
+            categoryData: [5],
             priceRating: affordable,
             photo: images.burger_restaurant_1,
-            duration: "30 - 45 min",
+            duration: "30 - 45 phut",
             location: {
                 latitude: 1.5347282806345879,
                 longitude: 110.35632207358996,
             },
             courier: {
                 avatar: images.avatar_1,
-                name: "Amy"
+                name: "Nhan vien burger"
             },
             menu: [
                 {
@@ -128,19 +127,19 @@ const Home = ({ navigation }) => {
         },
         {
             id: 2,
-            name: "ByProgrammers Pizza",
+            name: "Nha hang Pizza",
             rating: 4.8,
-            categories: [2, 4, 6],
+            categoryData: [6],
             priceRating: expensive,
             photo: images.pizza_restaurant,
-            duration: "15 - 20 min",
+            duration: "15 - 20 phut",
             location: {
                 latitude: 1.556306570595712,
                 longitude: 110.35504616746915,
             },
             courier: {
                 avatar: images.avatar_2,
-                name: "Jackson"
+                name: "Nhan vien pizza"
             },
             menu: [
                 {
@@ -179,19 +178,19 @@ const Home = ({ navigation }) => {
         },
         {
             id: 3,
-            name: "ByProgrammers Hotdogs",
+            name: "Nha hang Hotdogs",
             rating: 4.8,
-            categories: [3],
+            categoryData: [3],
             priceRating: expensive,
             photo: images.hot_dog_restaurant,
-            duration: "20 - 25 min",
+            duration: "20 - 25 phut",
             location: {
                 latitude: 1.5238753474714375,
                 longitude: 110.34261833833622,
             },
             courier: {
                 avatar: images.avatar_3,
-                name: "James"
+                name: "Nhan vien hotdogs"
             },
             menu: [
                 {
@@ -206,19 +205,19 @@ const Home = ({ navigation }) => {
         },
         {
             id: 4,
-            name: "ByProgrammers Sushi",
+            name: "Nha hang Sushi",
             rating: 4.8,
-            categories: [8],
+            categoryData: [8],
             priceRating: expensive,
             photo: images.japanese_restaurant,
-            duration: "10 - 15 min",
+            duration: "10 - 15 phut",
             location: {
                 latitude: 1.5578068150528928,
                 longitude: 110.35482523764315,
             },
             courier: {
                 avatar: images.avatar_4,
-                name: "Ahmad"
+                name: "Nhan vien sushi"
             },
             menu: [
                 {
@@ -233,19 +232,19 @@ const Home = ({ navigation }) => {
         },
         {
             id: 5,
-            name: "ByProgrammers Cuisine",
+            name: "Nha hang Noodles&Drinks",
             rating: 4.8,
-            categories: [1, 2],
+            categoryData: [2, 10],
             priceRating: affordable,
             photo: images.noodle_shop,
-            duration: "15 - 20 min",
+            duration: "15 - 20 phut",
             location: {
                 latitude: 1.558050496260768,
                 longitude: 110.34743759630511,
             },
             courier: {
                 avatar: images.avatar_4,
-                name: "Muthu"
+                name: "Nhan vien cuisine"
             },
             menu: [
                 {
@@ -286,19 +285,19 @@ const Home = ({ navigation }) => {
         {
 
             id: 6,
-            name: "ByProgrammers Dessets",
+            name: "Nha hang Dessets&Drinks",
             rating: 4.9,
-            categories: [9, 10],
+            categoryData: [9, 10],
             priceRating: affordable,
             photo: images.kek_lapis_shop,
-            duration: "35 - 40 min",
+            duration: "35 - 40 phut",
             location: {
                 latitude: 1.5573478487252896,
                 longitude: 110.35568783282145,
             },
             courier: {
                 avatar: images.avatar_1,
-                name: "Jessie"
+                name: "Nhan vien dessets"
             },
             menu: [
                 {
@@ -332,23 +331,21 @@ const Home = ({ navigation }) => {
 
     ]
 
-    const [categories, setCategories] = React.useState(categoryData)
-    const [selectedCategory, setSelectedCategory] = React.useState(null)
-    const [restaurants, setRestaurants] = React.useState(restaurantData)
-    const [currentLocation, setCurrentLocation] = React.useState(initialCurrentLocation)
+    const [staSelectedCategory, setStaSelectedCategory] = React.useState(null)
+    const [staRestaurants, setStaRestaurants] = React.useState(restaurantData)
 
 
     function onSelectCategory(category) {
         //filter restaurant
-        let restaurantList = restaurantData.filter(a => a.categories.includes(category.id))
+        let restaurantList = restaurantData.filter(a => a.categoryData.includes(category.id))
 
-        setRestaurants(restaurantList)
+        setStaRestaurants(restaurantList)
 
-        setSelectedCategory(category)
+        setStaSelectedCategory(category)
     }
 
     function getCategoryNameById(id) {
-        let category = categories.filter(a => a.id == id)
+        let category = categoryData.filter(a => a.id == id)
 
         if (category.length > 0)
             return category[0].name
@@ -387,7 +384,7 @@ const Home = ({ navigation }) => {
                             borderRadius: SIZES.radius
                         }}
                     >
-                        <Text style={{ ...FONTS.h3 }}>{currentLocation.streetName}</Text>
+                        <Text style={{ ...FONTS.h3 }}>{initialCurrentLocation.streetName}</Text>
                     </View>
                 </View>
 
@@ -418,7 +415,7 @@ const Home = ({ navigation }) => {
                     style={{
                         padding: SIZES.padding,
                         paddingBottom: SIZES.padding * 2,
-                        backgroundColor: (selectedCategory?.id == item.id) ? COLORS.primary : COLORS.white,
+                        backgroundColor: (staSelectedCategory?.id == item.id) ? COLORS.primary : COLORS.white,
                         borderRadius: SIZES.radius,
                         alignItems: "center",
                         justifyContent: "center",
@@ -434,7 +431,7 @@ const Home = ({ navigation }) => {
                             borderRadius: 25,
                             alignItems: "center",
                             justifyContent: "center",
-                            backgroundColor: (selectedCategory?.id == item.id) ? COLORS.white : COLORS.lightGray
+                            backgroundColor: (staSelectedCategory?.id == item.id) ? COLORS.white : COLORS.lightGray
                         }}
                     >
                         <Image
@@ -450,7 +447,7 @@ const Home = ({ navigation }) => {
                     <Text
                         style={{
                             marginTop: SIZES.padding,
-                            color: (selectedCategory?.id == item.id) ? COLORS.white : COLORS.black,
+                            color: (staSelectedCategory?.id == item.id) ? COLORS.white : COLORS.black,
                             ...FONTS.body5
                         }}
                     >
@@ -462,11 +459,10 @@ const Home = ({ navigation }) => {
 
         return (
             <View style={{ padding: SIZES.padding * 2 }}>
-                <Text style={{ ...FONTS.h1 }}>Main</Text>
-                <Text style={{ ...FONTS.h1 }}>Categories</Text>
+                <Text style={{ ...FONTS.h1 }}>Danh muc chinh</Text>
 
                 <FlatList
-                    data={categories}
+                    data={categoryData}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     keyExtractor={item => `${item.id}`}
@@ -482,8 +478,8 @@ const Home = ({ navigation }) => {
             <TouchableOpacity
                 style={{ marginBottom: SIZES.padding * 2 }}
                 onPress={() => navigation.navigate("Restaurant", {
-                    item,
-                    currentLocation
+                    navItem: item,
+                    navCurrentLocation: initialCurrentLocation
                 })}
             >
                 {/* Image */}
@@ -549,7 +545,7 @@ const Home = ({ navigation }) => {
                         }}
                     >
                         {
-                            item.categories.map((categoryId) => {
+                            item.categoryData.map((categoryId) => {
                                 return (
                                     <View
                                         style={{ flexDirection: 'row' }}
@@ -580,15 +576,15 @@ const Home = ({ navigation }) => {
         )
 
         return (
-            <FlatList
-                data={restaurants}
+            (staRestaurants.length > 0) ? <FlatList
+                data={staRestaurants}
                 keyExtractor={item => `${item.id}`}
                 renderItem={renderItem}
                 contentContainerStyle={{
                     paddingHorizontal: SIZES.padding * 2,
                     paddingBottom: 30
                 }}
-            />
+            /> : <Text>Hien chua co nha hang nao ban mon nay!</Text>
         )
     }
 

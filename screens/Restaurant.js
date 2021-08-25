@@ -15,19 +15,19 @@ import { icons, COLORS, SIZES, FONTS } from '../constants'
 const Restaurant = ({ route, navigation }) => {
 
     const scrollX = new Animated.Value(0);
-    const [restaurant, setRestaurant] = React.useState(null);
-    const [currentLocation, setCurrentLocation] = React.useState(null);
-    const [orderItems, setOrderItems] = React.useState([]);
+    const [staRestaurant, setSTaRestaurant] = React.useState(null);
+    const [staCurrentLocation, setStaCurrentLocation] = React.useState(null);
+    const [staOrderItems, setStaOrderItems] = React.useState([]);
 
     React.useEffect(() => {
-        let { item, currentLocation } = route.params;
+        let { navItem, navCurrentLocation } = route.params;
 
-        setRestaurant(item)
-        setCurrentLocation(currentLocation)
+        setSTaRestaurant(navItem)
+        setStaCurrentLocation(navCurrentLocation)
     })
 
     function editOrder(action, menuId, price) {
-        let orderList = orderItems.slice()
+        let orderList = staOrderItems.slice()
         let item = orderList.filter(a => a.menuId == menuId)
 
         if (action == "+") {
@@ -45,7 +45,7 @@ const Restaurant = ({ route, navigation }) => {
                 orderList.push(newItem)
             }
 
-            setOrderItems(orderList)
+            setStaOrderItems(orderList)
         } else {
             if (item.length > 0) {
                 if (item[0]?.qty > 0) {
@@ -55,12 +55,12 @@ const Restaurant = ({ route, navigation }) => {
                 }
             }
 
-            setOrderItems(orderList)
+            setStaOrderItems(orderList)
         }
     }
 
     function getOrderQty(menuId) {
-        let orderItem = orderItems.filter(a => a.menuId == menuId)
+        let orderItem = staOrderItems.filter(a => a.menuId == menuId)
 
         if (orderItem.length > 0) {
             return orderItem[0].qty
@@ -70,13 +70,13 @@ const Restaurant = ({ route, navigation }) => {
     }
 
     function getBasketItemCount() {
-        let itemCount = orderItems.reduce((a, b) => a + (b.qty || 0), 0)
+        let itemCount = staOrderItems.reduce((a, b) => a + (b.qty || 0), 0)
 
         return itemCount
     }
 
     function sumOrder() {
-        let total = orderItems.reduce((a, b) => a + (b.total || 0), 0)
+        let total = staOrderItems.reduce((a, b) => a + (b.total || 0), 0)
 
         return total.toFixed(2)
     }
@@ -120,7 +120,7 @@ const Restaurant = ({ route, navigation }) => {
                             backgroundColor: COLORS.lightGray3
                         }}
                     >
-                        <Text style={{ ...FONTS.h3 }}>{restaurant?.name}</Text>
+                        <Text style={{ ...FONTS.h3 }}>{staRestaurant?.name}</Text>
                     </View>
                 </View>
 
@@ -157,7 +157,7 @@ const Restaurant = ({ route, navigation }) => {
                 ], { useNativeDriver: false })}
             >
                 {
-                    restaurant?.menu.map((item, index) => (
+                    staRestaurant?.menu.map((item, index) => (
                         <View
                             key={`menu-${index}`}
                             style={{ alignItems: 'center' }}
@@ -234,8 +234,8 @@ const Restaurant = ({ route, navigation }) => {
                                     paddingHorizontal: SIZES.padding * 2
                                 }}
                             >
-                                <Text style={{ marginVertical: 10, textAlign: 'center', ...FONTS.h2 }}>{item.name} - {item.price.toFixed(2)}</Text>
-                                <Text style={{ ...FONTS.body3 }}>{item.description}</Text>
+                                <Text style={{ marginVertical: 10, textAlign: 'center', ...FONTS.h4 }}>{item.name} - ${item.price.toFixed(2)}</Text>
+                                <Text style={{ ...FONTS.body4 }}>{item.description}</Text>
                             </View>
 
                             {/* Calories */}
@@ -256,7 +256,7 @@ const Restaurant = ({ route, navigation }) => {
 
                                 <Text style={{
                                     ...FONTS.body3, color: COLORS.darygray
-                                }}>{item.calories.toFixed(2)} cal</Text>
+                                }}>{item.calories.toFixed(2)} calo</Text>
                             </View>
                         </View>
                     ))
@@ -279,7 +279,7 @@ const Restaurant = ({ route, navigation }) => {
                         height: SIZES.padding
                     }}
                 >
-                    {restaurant?.menu.map((item, index) => {
+                    {staRestaurant?.menu.map((item, index) => {
 
                         const opacity = dotPosition.interpolate({
                             inputRange: [index - 1, index, index + 1],
@@ -319,6 +319,19 @@ const Restaurant = ({ route, navigation }) => {
     }
 
     function renderOrder() {
+        let datmon_bkgcolor = (getBasketItemCount() > 0) ? {
+            width: SIZES.width * 0.9,
+            padding: SIZES.padding,
+            backgroundColor: COLORS.primary,
+            alignItems: 'center',
+            borderRadius: SIZES.radius
+        } : {
+            width: SIZES.width * 0.9,
+            padding: SIZES.padding,
+            backgroundColor: COLORS.darkgray,
+            alignItems: 'center',
+            borderRadius: SIZES.radius
+        }
         return (
             <View>
                 {
@@ -341,7 +354,7 @@ const Restaurant = ({ route, navigation }) => {
                             borderBottomWidth: 1
                         }}
                     >
-                        <Text style={{ ...FONTS.h3 }}>{getBasketItemCount()} items in Cart</Text>
+                        <Text style={{ ...FONTS.h3 }}>{getBasketItemCount()} mon trong gio hang</Text>
                         <Text style={{ ...FONTS.h3 }}>${sumOrder()}</Text>
                     </View>
 
@@ -363,7 +376,7 @@ const Restaurant = ({ route, navigation }) => {
                                     tintColor: COLORS.darkgray
                                 }}
                             />
-                            <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}>Location</Text>
+                            <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}>Vi tri</Text>
                         </View>
 
                         <View style={{ flexDirection: 'row' }}>
@@ -389,19 +402,14 @@ const Restaurant = ({ route, navigation }) => {
                         }}
                     >
                         <TouchableOpacity
-                            style={{
-                                width: SIZES.width * 0.9,
-                                padding: SIZES.padding,
-                                backgroundColor: COLORS.primary,
-                                alignItems: 'center',
-                                borderRadius: SIZES.radius
-                            }}
+                            style={datmon_bkgcolor}
                             onPress={() => navigation.navigate("OrderDelivery", {
-                                restaurant: restaurant,
-                                currentLocation: currentLocation
+                                navRestaurant: staRestaurant,
+                                navCurrentLocation: staCurrentLocation
                             })}
+                            disabled={(getBasketItemCount() > 0) ? false : true}
                         >
-                            <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Order</Text>
+                            <Text style={{ color: COLORS.white, ...FONTS.h2 }}>Dat mon</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
