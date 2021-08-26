@@ -376,7 +376,7 @@ const Restaurant = ({ route, navigation }) => {
                                     tintColor: COLORS.darkgray
                                 }}
                             />
-                            <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}>Vi tri</Text>
+                            <Text style={{ marginLeft: SIZES.padding, ...FONTS.body4 }}>Khoang cach toi trung tam</Text>
                         </View>
 
                         <View style={{ flexDirection: 'row' }}>
@@ -389,7 +389,7 @@ const Restaurant = ({ route, navigation }) => {
                                     tintColor: COLORS.darkgray
                                 }}
                             />
-                            <Text style={{ marginLeft: SIZES.padding, ...FONTS.h4 }}>8888</Text>
+                            <Text style={{ marginLeft: SIZES.padding, ...FONTS.body4 }}>{staRestaurant?.duration}</Text>
                         </View>
                     </View>
 

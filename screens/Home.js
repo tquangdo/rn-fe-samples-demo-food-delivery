@@ -18,8 +18,8 @@ const Home = ({ navigation }) => {
     const initialCurrentLocation = {
         streetName: "App dat mon DoTQ",
         gps: {
-            latitude: 1.5496614931250685,
-            longitude: 110.36381866919922
+            latitude: 10.784680,
+            longitude: 106.695970
         }
     }
 
@@ -84,15 +84,15 @@ const Home = ({ navigation }) => {
     const restaurantData = [
         {
             id: 1,
-            name: "Nha hang Burger",
+            name: "HaiBaTrung Burger",
             rating: 4.8,
             categoryData: [5],
             priceRating: affordable,
             photo: images.burger_restaurant_1,
             duration: "30 - 45 phut",
             location: {
-                latitude: 1.5347282806345879,
-                longitude: 110.35632207358996,
+                latitude: 10.784680,
+                longitude: 106.695970,
             },
             courier: {
                 avatar: images.avatar_1,
@@ -101,7 +101,7 @@ const Home = ({ navigation }) => {
             menu: [
                 {
                     menuId: 1,
-                    name: "Crispy Chicken Burger",
+                    name: "Ham bơ gơ 1",
                     photo: images.crispy_chicken_burger,
                     description: "Burger with crispy chicken, cheese and lettuce",
                     calories: 200,
@@ -109,7 +109,7 @@ const Home = ({ navigation }) => {
                 },
                 {
                     menuId: 2,
-                    name: "Crispy Chicken Burger with Honey Mustard",
+                    name: "Ham bơ gơ 2",
                     photo: images.honey_mustard_chicken_burger,
                     description: "Crispy Chicken Burger with Honey Mustard Coleslaw",
                     calories: 250,
@@ -117,7 +117,7 @@ const Home = ({ navigation }) => {
                 },
                 {
                     menuId: 3,
-                    name: "Crispy Baked French Fries",
+                    name: "Khoai tây chiên",
                     photo: images.baked_fries,
                     description: "Crispy Baked French Fries",
                     calories: 194,
@@ -127,15 +127,15 @@ const Home = ({ navigation }) => {
         },
         {
             id: 2,
-            name: "Nha hang Pizza",
+            name: "TanDinh Pizza",
             rating: 4.8,
             categoryData: [6],
             priceRating: expensive,
             photo: images.pizza_restaurant,
             duration: "15 - 20 phut",
             location: {
-                latitude: 1.556306570595712,
-                longitude: 110.35504616746915,
+                latitude: 10.791420,
+                longitude: 106.689000,
             },
             courier: {
                 avatar: images.avatar_2,
@@ -144,7 +144,7 @@ const Home = ({ navigation }) => {
             menu: [
                 {
                     menuId: 4,
-                    name: "Hawaiian Pizza",
+                    name: "Pizza Hawaii",
                     photo: images.hawaiian_pizza,
                     description: "Canadian bacon, homemade pizza crust, pizza sauce",
                     calories: 250,
@@ -152,7 +152,7 @@ const Home = ({ navigation }) => {
                 },
                 {
                     menuId: 5,
-                    name: "Tomato & Basil Pizza",
+                    name: "Pizza cà chua",
                     photo: images.pizza,
                     description: "Fresh tomatoes, aromatic basil pesto and melted bocconcini",
                     calories: 250,
@@ -168,7 +168,7 @@ const Home = ({ navigation }) => {
                 },
                 {
                     menuId: 7,
-                    name: "Mediterranean Chopped Salad ",
+                    name: "Salad trộn",
                     photo: images.salad,
                     description: "Finely chopped lettuce, tomatoes, cucumbers",
                     calories: 100,
@@ -178,15 +178,15 @@ const Home = ({ navigation }) => {
         },
         {
             id: 3,
-            name: "Nha hang Hotdogs",
+            name: "TanSonNhat Hotdogs",
             rating: 4.8,
             categoryData: [3],
             priceRating: expensive,
             photo: images.hot_dog_restaurant,
             duration: "20 - 25 phut",
             location: {
-                latitude: 1.5238753474714375,
-                longitude: 110.34261833833622,
+                latitude: 10.8030959,
+                longitude: 106.6618669,
             },
             courier: {
                 avatar: images.avatar_3,
@@ -195,7 +195,7 @@ const Home = ({ navigation }) => {
             menu: [
                 {
                     menuId: 8,
-                    name: "Chicago Style Hot Dog",
+                    name: "Chicago Hot Dog",
                     photo: images.chicago_hot_dog,
                     description: "Fresh tomatoes, all beef hot dogs",
                     calories: 100,
@@ -205,15 +205,15 @@ const Home = ({ navigation }) => {
         },
         {
             id: 4,
-            name: "Nha hang Sushi",
+            name: "TanTao Sushi",
             rating: 4.8,
             categoryData: [8],
             priceRating: expensive,
             photo: images.japanese_restaurant,
             duration: "10 - 15 phut",
             location: {
-                latitude: 1.5578068150528928,
-                longitude: 110.35482523764315,
+                latitude: 10.7603122,
+                longitude: 106.5888182,
             },
             courier: {
                 avatar: images.avatar_4,
@@ -222,7 +222,7 @@ const Home = ({ navigation }) => {
             menu: [
                 {
                     menuId: 9,
-                    name: "Sushi sets",
+                    name: "Sushi theo sét",
                     photo: images.sushi,
                     description: "Fresh salmon, sushi rice, fresh juicy avocado",
                     calories: 100,
@@ -232,15 +232,15 @@ const Home = ({ navigation }) => {
         },
         {
             id: 5,
-            name: "Nha hang Noodles&Drinks",
+            name: "LeHongPhong Noodles&Drinks",
             rating: 4.8,
             categoryData: [2, 10],
             priceRating: affordable,
             photo: images.noodle_shop,
             duration: "15 - 20 phut",
             location: {
-                latitude: 1.558050496260768,
-                longitude: 110.34743759630511,
+                latitude: 10.7708552,
+                longitude: 106.6730741,
             },
             courier: {
                 avatar: images.avatar_4,
@@ -249,7 +249,7 @@ const Home = ({ navigation }) => {
             menu: [
                 {
                     menuId: 10,
-                    name: "Kolo Mee",
+                    name: "Mì xá xíu",
                     photo: images.kolo_mee,
                     description: "Noodles with char siu",
                     calories: 200,
@@ -257,7 +257,7 @@ const Home = ({ navigation }) => {
                 },
                 {
                     menuId: 11,
-                    name: "Sarawak Laksa",
+                    name: "Mì xào tôm",
                     photo: images.sarawak_laksa,
                     description: "Vermicelli noodles, cooked prawns",
                     calories: 300,
@@ -265,7 +265,7 @@ const Home = ({ navigation }) => {
                 },
                 {
                     menuId: 12,
-                    name: "Nasi Lemak",
+                    name: "Cơm gà chiên",
                     photo: images.nasi_lemak,
                     description: "A traditional Malay rice dish",
                     calories: 300,
@@ -273,7 +273,7 @@ const Home = ({ navigation }) => {
                 },
                 {
                     menuId: 13,
-                    name: "Nasi Briyani with Mutton",
+                    name: "Cơm xào bít tết",
                     photo: images.nasi_briyani_mutton,
                     description: "A traditional Indian rice dish with mutton",
                     calories: 300,
@@ -285,15 +285,15 @@ const Home = ({ navigation }) => {
         {
 
             id: 6,
-            name: "Nha hang Dessets&Drinks",
+            name: "BachKhoa Dessets&Drinks",
             rating: 4.9,
             categoryData: [9, 10],
             priceRating: affordable,
             photo: images.kek_lapis_shop,
             duration: "35 - 40 phut",
             location: {
-                latitude: 1.5573478487252896,
-                longitude: 110.35568783282145,
+                latitude: 10.7719553,
+                longitude: 106.6576919,
             },
             courier: {
                 avatar: images.avatar_1,
@@ -302,7 +302,7 @@ const Home = ({ navigation }) => {
             menu: [
                 {
                     menuId: 12,
-                    name: "Teh C Peng",
+                    name: "Trà sữa",
                     photo: images.teh_c_peng,
                     description: "Three Layer Teh C Peng",
                     calories: 100,
@@ -310,7 +310,7 @@ const Home = ({ navigation }) => {
                 },
                 {
                     menuId: 13,
-                    name: "ABC Ice Kacang",
+                    name: "Kem tô",
                     photo: images.ice_kacang,
                     description: "Shaved Ice with red beans",
                     calories: 100,
@@ -318,7 +318,7 @@ const Home = ({ navigation }) => {
                 },
                 {
                     menuId: 14,
-                    name: "Kek Lapis",
+                    name: "Bánh kẹo",
                     photo: images.kek_lapis,
                     description: "Layer cakes",
                     calories: 300,

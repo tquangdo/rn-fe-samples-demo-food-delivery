@@ -6,9 +6,12 @@ import {
     TouchableOpacity
 } from "react-native";
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
-import MapViewDirections from "react-native-maps-directions";
+// import MapViewDirections from "react-native-maps-directions";
 
-import { COLORS, FONTS, icons, SIZES, GOOGLE_API_KEY } from "../constants"
+import {
+    COLORS, FONTS, icons, SIZES,
+    // GOOGLE_API_KEY
+} from "../constants"
 
 const OrderDelivery = ({ route, navigation }) => {
 
@@ -19,8 +22,8 @@ const OrderDelivery = ({ route, navigation }) => {
     const [fromLocation, setFromLocation] = React.useState(null)
     const [toLocation, setToLocation] = React.useState(null)
     const [region, setRegion] = React.useState(null)
-    const [duration, setDuration] = React.useState(0)
-    const [isReady, setIsReady] = React.useState(false)
+    // const [duration, setDuration] = React.useState(0)
+    // const [isReady, setIsReady] = React.useState(false)
     const [angle, setAngle] = React.useState(0)
 
     React.useEffect(() => {
@@ -45,16 +48,16 @@ const OrderDelivery = ({ route, navigation }) => {
 
     }, [])
 
-    function calculateAngle(coordinates) {
-        let startLat = coordinates[0]["latitude"]
-        let startLng = coordinates[0]["longitude"]
-        let endLat = coordinates[1]["latitude"]
-        let endLng = coordinates[1]["longitude"]
-        let dx = endLat - startLat
-        let dy = endLng - startLng
+    // function calculateAngle(coordinates) {
+    //     let startLat = coordinates[0]["latitude"]
+    //     let startLng = coordinates[0]["longitude"]
+    //     let endLat = coordinates[1]["latitude"]
+    //     let endLng = coordinates[1]["longitude"]
+    //     let dx = endLat - startLat
+    //     let dy = endLng - startLng
 
-        return Math.atan2(dy, dx) * 180 / Math.PI
-    }
+    //     return Math.atan2(dy, dx) * 180 / Math.PI
+    // }
 
     function zoomIn() {
         let newRegion = {
@@ -82,10 +85,12 @@ const OrderDelivery = ({ route, navigation }) => {
 
     function renderMap() {
         const destinationMarker = () => (
+            // "Marker" khac voi "MapView", chi la 1 dau cham
+            // Marker>toLocation
             <Marker
                 coordinate={(toLocation) ? toLocation : {
-                    latitude: 1.5347282806345879,
-                    longitude: 110.35632207358996,
+                    latitude: 10.784680,
+                    longitude: 106.695970
                 }}
             >
                 <View
@@ -122,6 +127,7 @@ const OrderDelivery = ({ route, navigation }) => {
         )
 
         const carIcon = () => (
+            // Marker>fromLocation
             <Marker
                 coordinate={fromLocation}
                 anchor={{ x: 0.5, y: 0.5 }}
@@ -140,13 +146,16 @@ const OrderDelivery = ({ route, navigation }) => {
 
         return (
             <View style={{ flex: 1 }}>
+                {/* "MapView" hien all GG map fullscreen */}
                 <MapView
                     ref={mapView}
                     provider={PROVIDER_GOOGLE}
+                    // "region" la vi tri cua "screens/Home.js>initialCurrentLocation"
                     initialRegion={region}
                     style={{ flex: 1 }}
                 >
-                    <MapViewDirections
+                    {/* "MapViewDirections" ve route tu "fromLocation"->"toLocation" */}
+                    {/* <MapViewDirections
                         origin={fromLocation}
                         destination={toLocation}
                         apikey={GOOGLE_API_KEY}
@@ -182,7 +191,7 @@ const OrderDelivery = ({ route, navigation }) => {
                                 setIsReady(true)
                             }
                         }}
-                    />
+                    /> */}
                     {destinationMarker()}
                     {fromLocation ? carIcon() : null}
                 </MapView>
@@ -226,8 +235,8 @@ const OrderDelivery = ({ route, navigation }) => {
                     <View style={{ flex: 1 }}>
                         <Text style={{ ...FONTS.body3 }}>{streetName}</Text>
                     </View>
-
-                    <Text style={{ ...FONTS.body3 }}>{Math.ceil(duration)} phut</Text>
+                    <Text style={{ ...FONTS.body4 }}>{restaurant?.duration}</Text>
+                    {/* <Text style={{ ...FONTS.body3 }}>{Math.ceil(duration)} phut</Text> */}
                 </View>
             </View>
         )
@@ -301,9 +310,12 @@ const OrderDelivery = ({ route, navigation }) => {
                                 justifyContent: 'center',
                                 borderRadius: 10
                             }}
-                            onPress={() => navigation.navigate("Home")}
+                            onPress={() => {
+                                alert(`Bạn đã đặt thành công món của quán ${restaurant?.name}`)
+                                navigation.navigate("Home")
+                            }}
                         >
-                            <Text style={{ ...FONTS.h4, color: COLORS.white }}>Goi</Text>
+                            <Text style={{ ...FONTS.h4, color: COLORS.white }}>Dat mon</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity

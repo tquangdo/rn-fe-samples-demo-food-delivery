@@ -40,13 +40,11 @@ export default {
     burger_restaurant_2,
     chicago_hot_dog,
     crispy_chicken_burger,
-
     fries_restaurant,
     hawaiian_pizza,
     honey_mustard_chicken_burger,
     hot_dog_restaurant,
     ice_kacang,
-
     japanese_restaurant,
     kek_lapis_shop,
     kek_lapis,
@@ -56,6 +54,7 @@ export default {
     noodle_shop,
     pizza_restaurant,
     pizza,
+    salad,
     sarawak_laksa,
     sushi,
     teh_c_peng,
